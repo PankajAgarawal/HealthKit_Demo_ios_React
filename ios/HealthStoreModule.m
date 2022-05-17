@@ -174,4 +174,41 @@ RCT_EXPORT_METHOD(getBurnCaloriesFrom:(NSString *)startDate
   
 }
 
+// ------------------------------------------------------------------------------------
+// MARK: - Get Current Heart Rate Data
+// ------------------------------------------------------------------------------------
+
+RCT_EXPORT_METHOD(getCurrentHeartRate:
+                  resolver: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+  
+  // Permission request
+  [self.dataManager requestAuth];
+
+  // Get Current Heart Rate
+  [self.dataManager getCurrentHeartRatesWithCompletion:^(NSDictionary<NSString *,id> * record, NSError * error) {
+    
+    if(record)
+    {
+      // Convert HeartRate data (NSDictionary) to jsondata (NSData)
+      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:record options:NSJSONWritingPrettyPrinted error:&error];
+      
+      // Convert jsondata to Jsonstring
+      NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+      // Send Json String data to rect module with the help of handler
+      resolve(jsonString);
+      
+    }
+    else
+    {
+      // Error handler
+      reject(@"",@"",error);
+    }
+
+  }];
+  
+}
+
+
 @end

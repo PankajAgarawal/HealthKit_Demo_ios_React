@@ -15,10 +15,15 @@ enum HealthkitSetupError: Error {
 }
 
 typealias CompletionHandler = (([[String: Double]]?, Error?) -> Void)
+typealias HeartRateCompletionHandler = (([String : Any]?, Error?) -> Void)
 
 @objc class HealthDataManager: NSObject {
   
   let healthStore = HKHealthStore()
+  
+  var currentHeartRateBPM = Double()
+  let heartRateType:HKQuantityType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!
+  var heartRateQuery:HKSampleQuery?
   
   @objc func requestAuth() {
     //1. Check to see if HealthKit Is Available on this device
@@ -37,7 +42,9 @@ typealias CompletionHandler = (([[String: Double]]?, Error?) -> Void)
       let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
       let basalEnergy = HKObjectType.quantityType(forIdentifier: .basalEnergyBurned),
       let step = HKObjectType.quantityType(forIdentifier: .stepCount),
-      let distance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)
+      let distance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
+      let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)
+        
     else {
       return
     }
@@ -57,6 +64,7 @@ typealias CompletionHandler = (([[String: Double]]?, Error?) -> Void)
                                                    bodyMass,
                                                    step,
                                                    distance,
+                                                   heartRate,
                                                    HKObjectType.workoutType()]
     
     //4. Request Authorization
@@ -108,6 +116,67 @@ typealias CompletionHandler = (([[String: Double]]?, Error?) -> Void)
     }
     
     print("Health Data DOB:-",dob)
+  }
+  
+  // Method to get Current heart rate - this only reads data from health kit.
+  @objc func getCurrentHeartRates(completion: @escaping HeartRateCompletionHandler) {
+    let calendar = NSCalendar.current
+    let now = NSDate()
+    let components = calendar.dateComponents([.year, .month, .day], from: now as Date)
+    
+    guard let startDate:NSDate = calendar.date(from: components) as NSDate? else { return }
+    var dayComponent    = DateComponents()
+    dayComponent.day   = 1
+    let endDate:NSDate? = calendar.date(byAdding: dayComponent, to: startDate as Date) as NSDate?
+    
+    print("Start",startDate)
+    print("End",endDate as Any)
+    
+    let predicate = HKQuery.predicateForSamples(withStart: startDate as Date, end: endDate as Date?, options: [])
+    
+    //descriptor
+    let sortDescriptors = [
+      NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
+    ]
+    
+    heartRateQuery = HKSampleQuery(sampleType: heartRateType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
+      
+      guard error == nil else { print("error");completion(nil, error); return }
+      
+      self.collectCurrentHeartRateSample(currentSampleTyple: results) { recordData, error in
+        print(error as Any)
+        print(recordData as Any)
+        
+        // Error Handler manage
+        if error != nil {
+          completion(nil , error)
+        }
+        else {
+          completion(recordData, nil)
+        }
+      }
+    })
+    
+    self.healthStore.execute(heartRateQuery!)
+  }
+  
+  // Collect Heart Rate Data
+  func collectCurrentHeartRateSample(currentSampleTyple : [HKSample]?, completion: @escaping HeartRateCompletionHandler ){
+    
+    if currentSampleTyple?.last != nil {
+      
+      let lastHeartRateSample = currentSampleTyple?.last as! HKQuantitySample
+      
+      self.currentHeartRateBPM = lastHeartRateSample.quantity.doubleValue(for: HKUnit(from: "count/min"))
+      
+      DispatchQueue.main.async {
+        
+        let message = [
+          "HeartRateBPM" : "\(self.currentHeartRateBPM)"
+        ]
+        completion(message, nil)
+      }
+    }
   }
   
   fileprivate func fetchData(For sampleType: HKQuantityType, from startDate: Date, to endDate: Date, completion: @escaping CompletionHandler) {

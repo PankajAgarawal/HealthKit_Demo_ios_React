@@ -6,8 +6,11 @@ const { HealthStore } = NativeModules;
 
 const App = () => {
 
+  const [buttonTitle, setButtonTitle] = React.useState("Get Heart Rate Data");
+
 useEffect(()=>{
 //call authentication
+setButtonTitle("Get Heart Rate Data")
 
 },[])
 
@@ -57,6 +60,22 @@ useEffect(()=>{
     
       }
 
+      const heartRateButton = async () => {
+
+        HealthStore.getCurrentHeartRate(
+          null
+        ).then((res) => {
+          
+          const newValue = JSON.parse(res)
+          console.log("Heart Rate Value ==============",newValue.HeartRateBPM)
+          setButtonTitle(`Your Heart Rate Data:- ${newValue.HeartRateBPM}`)
+
+        }).catch((error) => {
+          console.log('Error',error);
+        })
+      
+        }
+
   return (
     
     <View style={{
@@ -80,6 +99,12 @@ useEffect(()=>{
 <Button  
     onPress = {burnCaloriesButton}  
     title="Get Burn Calories Data"
+  /> 
+
+<Button  
+  id = "heartRate"
+  onPress = {heartRateButton}  
+  title={buttonTitle}
   /> 
 
 </View>
