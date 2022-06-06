@@ -1,18 +1,30 @@
 import React, { useEffect } from 'react';
-import { NativeModules } from 'react-native';
+import { NativeEventEmitter, NativeModules } from 'react-native';
 import { Text, View,Button } from 'react-native';
 
-const { HealthStore } = NativeModules;
+const { ModuleWithEmitter, HealthStore } = NativeModules;
 
 const App = () => {
 
-  const [buttonTitle, setButtonTitle] = React.useState("Get Heart Rate Data");
+
+
+const [buttonTitle, setButtonTitle] = React.useState("Get Heart Rate Data");
+const [ecgButtonTitle, setECGButtonTitle] = React.useState("Get ECG Data");
 
 useEffect(()=>{
 //call authentication
 setButtonTitle("Get Heart Rate Data")
-
+setECGButtonTitle("Get ECG Data")
+onSessionConnect()
 },[])
+
+
+  const onSessionConnect = (event) => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.ModuleWithEmitter)
+    eventEmitter.addListener('onSessionConnect', (onSessionConnect) => {
+      console.log("pdf Path Data",onSessionConnect)
+    })
+  }
 
   const stepButton = async () => {
 
@@ -76,6 +88,23 @@ setButtonTitle("Get Heart Rate Data")
       
         }
 
+        const ecgDataButton = async () => {
+
+          HealthStore.getECGData(
+            null
+          ).then((res) => {
+            console.log("ECG data React modul")
+            //const newValue = JSON.parse(res)
+            //console.log("Heart ECG Value ==============",newValue.HeartRateBPM)
+            //setButtonTitle(`Your ECG Data:- ${newValue.HeartRateBPM}`)
+  
+          }).catch((error) => {
+            console.log('RCT Error',error);
+          })
+        
+          }
+
+
   return (
     
     <View style={{
@@ -106,6 +135,12 @@ setButtonTitle("Get Heart Rate Data")
   onPress = {heartRateButton}  
   title={buttonTitle}
   /> 
+
+<Button  
+  id = "ecgData"
+  onPress = {ecgDataButton}  
+  title={ecgButtonTitle}
+  />
 
 </View>
     </View>

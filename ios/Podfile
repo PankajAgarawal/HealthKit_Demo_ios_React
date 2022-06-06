@@ -5,6 +5,10 @@ platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'rnDemo' do
+
+ pod 'AFNetworking'
+  pod 'MBProgressHUD'
+
   config = use_native_modules!
 
   # Flags change depending on the env values.

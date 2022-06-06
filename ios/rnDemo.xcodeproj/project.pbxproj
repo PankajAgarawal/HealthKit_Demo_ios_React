@@ -14,6 +14,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-rnDemo-rnDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-rnDemo-rnDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8B2A95B6284649790054CA03 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95B5284649790054CA03 /* AVFoundation.framework */; };
+		8B2A95B8284649830054CA03 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95B7284649830054CA03 /* CoreBluetooth.framework */; };
+		8B2A95BA2846498F0054CA03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95B92846498E0054CA03 /* CoreGraphics.framework */; };
+		8B2A95BC2846499F0054CA03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95BB2846499F0054CA03 /* Foundation.framework */; };
+		8B2A95BE284649A90054CA03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95BD284649A90054CA03 /* UIKit.framework */; };
+		8B2A95C228464A580054CA03 /* AliveCorKitAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B2A95C028464A580054CA03 /* AliveCorKitAssets.bundle */; };
+		8B2A95C328464A790054CA03 /* AliveCorKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95BF28464A580054CA03 /* AliveCorKitLite.framework */; };
+		8B2A95C428464A790054CA03 /* AliveCorKitLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2A95BF28464A580054CA03 /* AliveCorKitLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B2A95C828464BD70054CA03 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A95C728464BD70054CA03 /* NetworkManager.m */; };
+		8B2A95CB28464C620054CA03 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A95CA28464C620054CA03 /* NavigationController.m */; };
+		8B71DD342848C6160005319A /* ModuleWithEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B71DD332848C6160005319A /* ModuleWithEmitter.m */; };
+		8BA4AF75284653480049AE6C /* ECGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4AF74284653480049AE6C /* ECGViewController.m */; };
 		8BC9379D27FC6303006004D5 /* HealthDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC9379C27FC6303006004D5 /* HealthDataManager.swift */; };
 		8BC937A027FD7CAF006004D5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC9379F27FD7CAF006004D5 /* HealthKit.framework */; };
 		8BD056D828006E5400B91104 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD056D728006E5400B91104 /* DateExtension.swift */; };
@@ -29,6 +41,20 @@
 			remoteInfo = rnDemo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8B2A95C528464A790054CA03 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8B2A95C428464A790054CA03 /* AliveCorKitLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* rnDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rnDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +73,21 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-rnDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = rnDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-rnDemo-rnDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemo-rnDemoTests.release.xcconfig"; path = "Target Support Files/Pods-rnDemo-rnDemoTests/Pods-rnDemo-rnDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B2A95B5284649790054CA03 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8B2A95B7284649830054CA03 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8B2A95B92846498E0054CA03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8B2A95BB2846499F0054CA03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8B2A95BD284649A90054CA03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8B2A95BF28464A580054CA03 /* AliveCorKitLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliveCorKitLite.framework; sourceTree = "<group>"; };
+		8B2A95C028464A580054CA03 /* AliveCorKitAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AliveCorKitAssets.bundle; sourceTree = "<group>"; };
+		8B2A95C628464BD70054CA03 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		8B2A95C728464BD70054CA03 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		8B2A95C928464C620054CA03 /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		8B2A95CA28464C620054CA03 /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		8B71DD322848C6160005319A /* ModuleWithEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleWithEmitter.h; sourceTree = "<group>"; };
+		8B71DD332848C6160005319A /* ModuleWithEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleWithEmitter.m; sourceTree = "<group>"; };
+		8BA4AF73284653480049AE6C /* ECGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECGViewController.h; sourceTree = "<group>"; };
+		8BA4AF74284653480049AE6C /* ECGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECGViewController.m; sourceTree = "<group>"; };
 		8BC9379B27FC6303006004D5 /* rnDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rnDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		8BC9379C27FC6303006004D5 /* HealthDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataManager.swift; sourceTree = "<group>"; };
 		8BC9379E27FD7CAE006004D5 /* rnDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = rnDemo.entitlements; path = rnDemo/rnDemo.entitlements; sourceTree = "<group>"; };
@@ -70,8 +111,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2A95C328464A790054CA03 /* AliveCorKitLite.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-rnDemo.a in Frameworks */,
+				8B2A95BC2846499F0054CA03 /* Foundation.framework in Frameworks */,
 				8BC937A027FD7CAF006004D5 /* HealthKit.framework in Frameworks */,
+				8B2A95B8284649830054CA03 /* CoreBluetooth.framework in Frameworks */,
+				8B2A95BA2846498F0054CA03 /* CoreGraphics.framework in Frameworks */,
+				8B2A95BE284649A90054CA03 /* UIKit.framework in Frameworks */,
+				8B2A95B6284649790054CA03 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +145,9 @@
 		13B07FAE1A68108700A75B9A /* rnDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8B71DD312848C5BA0005319A /* EventEmitterModule */,
+				8BA4AF722846532D0049AE6C /* ECGViewController */,
+				8B2A95CC28464C670054CA03 /* NavigationController */,
 				8BD056DA28006EB900B91104 /* ConnectionModule */,
 				8BD056D928006E9F00B91104 /* Managers */,
 				8BD056D628006DEB00B91104 /* Extensions */,
@@ -116,6 +166,13 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B2A95C028464A580054CA03 /* AliveCorKitAssets.bundle */,
+				8B2A95BF28464A580054CA03 /* AliveCorKitLite.framework */,
+				8B2A95BD284649A90054CA03 /* UIKit.framework */,
+				8B2A95BB2846499F0054CA03 /* Foundation.framework */,
+				8B2A95B92846498E0054CA03 /* CoreGraphics.framework */,
+				8B2A95B7284649830054CA03 /* CoreBluetooth.framework */,
+				8B2A95B5284649790054CA03 /* AVFoundation.framework */,
 				8BC9379F27FD7CAF006004D5 /* HealthKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-rnDemo.a */,
@@ -155,6 +212,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8B2A95CC28464C670054CA03 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				8B2A95C928464C620054CA03 /* NavigationController.h */,
+				8B2A95CA28464C620054CA03 /* NavigationController.m */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
+		8B71DD312848C5BA0005319A /* EventEmitterModule */ = {
+			isa = PBXGroup;
+			children = (
+				8B71DD322848C6160005319A /* ModuleWithEmitter.h */,
+				8B71DD332848C6160005319A /* ModuleWithEmitter.m */,
+			);
+			name = EventEmitterModule;
+			sourceTree = "<group>";
+		};
+		8BA4AF722846532D0049AE6C /* ECGViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8BA4AF73284653480049AE6C /* ECGViewController.h */,
+				8BA4AF74284653480049AE6C /* ECGViewController.m */,
+			);
+			name = ECGViewController;
+			sourceTree = "<group>";
+		};
 		8BD056D628006DEB00B91104 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				8BC9379C27FC6303006004D5 /* HealthDataManager.swift */,
+				8B2A95C628464BD70054CA03 /* NetworkManager.h */,
+				8B2A95C728464BD70054CA03 /* NetworkManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -227,6 +313,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				8B2A95C528464A790054CA03 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -285,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2A95C228464A580054CA03 /* AliveCorKitAssets.bundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -454,10 +542,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				8B71DD342848C6160005319A /* ModuleWithEmitter.m in Sources */,
 				8BD056D828006E5400B91104 /* DateExtension.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				8BDD1D3E27FEC95900628FA6 /* HealthStoreModule.m in Sources */,
+				8BA4AF75284653480049AE6C /* ECGViewController.m in Sources */,
+				8B2A95C828464BD70054CA03 /* NetworkManager.m in Sources */,
 				8BC9379D27FC6303006004D5 /* HealthDataManager.swift in Sources */,
+				8B2A95CB28464C620054CA03 /* NavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +629,10 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6S4NR322P7;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = rnDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -553,6 +649,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "rnDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -568,6 +665,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6S4NR322P7;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = rnDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,6 +685,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = PankajInnowave194;
 				SWIFT_OBJC_BRIDGING_HEADER = "rnDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

@@ -12,9 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HealthStoreModule : NSObject <RCTBridgeModule>
 
-
-// RCT_EXPORT_METHOD(getStepsFrom:(NSString *)startDate endDate:(NSString *)endDate callback: (RCTResponseSenderBlock)callback);
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,0 +1,87 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AliveCorKitLite
+@_exported import AliveCorKitLite
+import CoreData
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+public protocol KeyChainQuery {
+  var query: [Swift.String : Any]? { get }
+}
+public struct TokenQuery {
+}
+extension AliveCorKitLite.TokenQuery : AliveCorKitLite.KeyChainQuery {
+  public var query: [Swift.String : Any]? {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class SecurityManager : ObjectiveC.NSObject {
+  @objc public static var sharedInstance: AliveCorKitLite.SecurityManager
+  @objc public func isValid() -> Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Event) public class Event : CoreData.NSManagedObject {
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class EventManager : ObjectiveC.NSObject {
+  public static var recordingEvent: Swift.String
+  public static var evaluationEvent: Swift.String
+  @objc public static var sharedInstance: AliveCorKitLite.EventManager
+  @objc public func logEvent(_ event: Swift.String)
+  @objc public func logDebugEvent(_ event: Swift.String)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ACKEventBridge : ObjectiveC.NSObject {
+  @objc public class func recording() -> Foundation.NSString
+  @objc public class func evaluation() -> Foundation.NSString
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class DataManager : ObjectiveC.NSObject {
+  @objc public static var sharedInstance: AliveCorKitLite.DataManager
+  @objc public func setDebugMode(_ mode: Swift.Bool)
+  @objc public func saveJwt(_ jwt: Swift.String)
+  @objc public func getJwt() -> Swift.String?
+  @objc public func getConfiguration() -> AliveCorKitLite.ACKConfiguration?
+  @objc public func authSDK(token: Swift.String?, version: Swift.String?, completion: @escaping ((Foundation.NSError?, Foundation.NSDictionary?) -> Swift.Void))
+  @objc public func uploadEvents()
+  @objc deinit
+}
+extension Foundation.DateFormatter {
+  @objc public static var rfc3339WithSubSecondsDateFormatter: Foundation.DateFormatter
+  @objc public static var rfc3339DateFormatter: Foundation.DateFormatter
+}
+extension Foundation.Date {
+  public func toRfc3339WithSubSecondsString() -> Swift.String
+  public func toRfc3339String() -> Swift.String
+}
+extension Swift.CodingUserInfoKey {
+  public static var moc: Swift.CodingUserInfoKey?
+}
+extension AliveCorKitLite.Event {
+  @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AliveCorKitLite.Event>
+  @objc @NSManaged dynamic public var clientId: Swift.String? {
+    @objc get
+    @objc set(value)
+  }
+  @objc @NSManaged dynamic public var event: Swift.String? {
+    @objc get
+    @objc set(value)
+  }
+  @objc @NSManaged dynamic public var recordedAt: Foundation.Date? {
+    @objc get
+    @objc set(value)
+  }
+  @objc @NSManaged dynamic public var recordedAtOffset: Swift.Int64 {
+    @objc get
+    @objc set(value)
+  }
+  @objc @NSManaged dynamic public var needsUpload: Swift.Bool {
+    @objc get
+    @objc set(value)
+  }
+}

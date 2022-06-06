@@ -7,10 +7,16 @@
 
 #import "HealthStoreModule.h"
 #import <React/RCTLog.h>
+#import <React/RCTEventEmitter.h>
 #import "rnDemo-Swift.h"
+#import "ECGViewController.h"
+#import "AppDelegate.h"
+#import "ModuleWithEmitter.h"
 
-@interface HealthStoreModule()
-
+@interface HealthStoreModule() <ECGDelegate>
+{
+  AppDelegate *appdelegate;
+}
 @property (strong, nonatomic) HealthDataManager *dataManager;
 
 @end
@@ -43,7 +49,8 @@ RCT_EXPORT_MODULE(HealthStore);
 RCT_EXPORT_METHOD(getStepsFrom:(NSString *)startDate
                   endDate:(NSString *)endDate
                   resolver: (RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
   
   // Permission request
   [self.dataManager requestAuth];
@@ -89,7 +96,8 @@ RCT_EXPORT_METHOD(getStepsFrom:(NSString *)startDate
 RCT_EXPORT_METHOD(getDistanceDataFrom:(NSString *)startDate
                   endDate:(NSString *)endDate
                   resolver: (RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
   
   // Permission request
   [self.dataManager requestAuth];
@@ -135,7 +143,8 @@ RCT_EXPORT_METHOD(getDistanceDataFrom:(NSString *)startDate
 RCT_EXPORT_METHOD(getBurnCaloriesFrom:(NSString *)startDate
                   endDate:(NSString *)endDate
                   resolver: (RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
   
   // Permission request
   [self.dataManager requestAuth];
@@ -180,7 +189,8 @@ RCT_EXPORT_METHOD(getBurnCaloriesFrom:(NSString *)startDate
 
 RCT_EXPORT_METHOD(getCurrentHeartRate:
                   resolver: (RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
   
   // Permission request
   [self.dataManager requestAuth];
@@ -210,5 +220,48 @@ RCT_EXPORT_METHOD(getCurrentHeartRate:
   
 }
 
+// ------------------------------------------------------------------------------------
+// MARK: - Get ECG Data
+// ------------------------------------------------------------------------------------
+RCT_EXPORT_METHOD(getECGData:
+                  resolver: (RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  
+  NSLog(@"Get ECG Data Call");
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    
+    ECGViewController *ecgVC = [[ECGViewController alloc] init];
+    
+    UINavigationController* contactNavigator = [[UINavigationController alloc] initWithRootViewController:ecgVC];
+    
+    self->appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    ecgVC.delegate = self;
+    
+    [ecgVC authorizeSDK];
+    
+    [self->appdelegate.window.rootViewController presentViewController:contactNavigator animated:NO completion:nil];
+    
+  });
+}
+
+// ------------------------------------------------------------------------------------
+// MARK: - ECG VC Delegate
+// ------------------------------------------------------------------------------------
+- (void)ecgRecordingFinishedWithSuccess:(NSString *)pdfPath
+{
+  ModuleWithEmitter *module = [ModuleWithEmitter allocWithZone:nil];
+  [module sendEventwithPdfPath:pdfPath];
+  
+  [appdelegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+  
+}
+
+- (void)ecgRecordingFinishedWithError:(NSError *)error
+{
+  [appdelegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

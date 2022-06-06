@@ -1,0 +1,11 @@
+framework module AliveCorKitLite {
+  umbrella header "AliveCorKitLite.h"
+
+  export *
+  module * { export * }
+}
+
+module AliveCorKitLite.Swift {
+    header "AliveCorKitLite-Swift.h"
+    requires objc
+}

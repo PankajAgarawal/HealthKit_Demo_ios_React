@@ -53,6 +53,10 @@
 	<string>Need your permission to access health data.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Need your permission to access health data.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Permission needed to get ECG data.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Permission needed to get ECG data.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

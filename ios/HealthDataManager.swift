@@ -128,10 +128,7 @@ typealias HeartRateCompletionHandler = (([String : Any]?, Error?) -> Void)
     var dayComponent    = DateComponents()
     dayComponent.day   = 1
     let endDate:NSDate? = calendar.date(byAdding: dayComponent, to: startDate as Date) as NSDate?
-    
-    print("Start",startDate)
-    print("End",endDate as Any)
-    
+  
     let predicate = HKQuery.predicateForSamples(withStart: startDate as Date, end: endDate as Date?, options: [])
     
     //descriptor
@@ -144,9 +141,7 @@ typealias HeartRateCompletionHandler = (([String : Any]?, Error?) -> Void)
       guard error == nil else { print("error");completion(nil, error); return }
       
       self.collectCurrentHeartRateSample(currentSampleTyple: results) { recordData, error in
-        print(error as Any)
-        print(recordData as Any)
-        
+      
         // Error Handler manage
         if error != nil {
           completion(nil , error)
